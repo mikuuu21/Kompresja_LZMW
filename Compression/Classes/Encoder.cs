@@ -5,13 +5,13 @@ using System.Web;
 
 namespace Compression.Classes
 {
-    public class Compression
+    public class Encoder
     {
 
         public Dictionary<string, int> dict;
 
 
-        public Compression()
+        public Encoder()
         {
             dict = DictInitialize.CompressDictionaryInit();
         }

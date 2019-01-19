@@ -1,11 +1,12 @@
 ﻿<link href="~/Content/compression.css" rel="stylesheet" />
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 @{
     ViewBag.Title = "Kompresja";
 }
 
 <div class="form-group space compression">
     <label>Kompresja</label>
-    <textarea class="form-control textarea" rows="8" placeholder="Wpisz tekst do kompresji"></textarea>
+    <textarea class="form-control textarea compress" rows="8" placeholder="Wpisz tekst do kompresji"></textarea>
 </div>
 <div class="buttons">
     <button type="button" class="btn btn-primary comp">Kompresuj </button>
@@ -13,6 +14,16 @@
 </div>
 <div class="form-group decompression">
     <label>Dekompresja</label>
-    <textarea class="form-control textarea" rows="8" placeholder="Wpisz tekst do dekompresji"></textarea>
+    <textarea class="form-control textarea decompress" rows="8" placeholder="Wpisz tekst do dekompresji"></textarea>
+</div>
+
+<div id="chart">
+
+    <main>
+
+        <h5>Wykres kompresja</h5>
+        <div id="bar-chart"></div>
+    </main>
+
 </div>
 

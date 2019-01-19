@@ -9,7 +9,7 @@ namespace Compression.Controllers
     public class CompressionController : Controller
     {
         // GET: HelloWorld
-        public ActionResult Index()
+        public ActionResult StartView()
         {
             return View();
         }
@@ -22,5 +22,6 @@ namespace Compression.Controllers
 
             return View();
         }
+
     }
 }

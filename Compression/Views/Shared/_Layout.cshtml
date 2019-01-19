@@ -12,7 +12,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                @Html.ActionLink("Kompresja", "Index", "Compression", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Kompresja", "StartView", "Compression", new { area = "" }, new { @class = "navbar-brand" })
             </div>
         </div>
     </div>
@@ -24,6 +24,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/Scripts/compression.js")
+    @Scripts.Render("~/Scripts/chart.js")
     @RenderSection("scripts", required: false)
 </body>
 </html>
