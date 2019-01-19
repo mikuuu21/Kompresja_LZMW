@@ -1,0 +1,23 @@
+﻿.textarea
+{
+
+    width: 50vw;
+    max-width: initial;
+}
+
+.space{
+    margin: 15px 0 0 0 ;
+}
+
+.buttons {
+    margin-top: 10px;
+    width: 50vw;
+}
+
+.decompression{
+    margin-top: 5px;
+}
+
+.decomp{
+    float: right;
+}
