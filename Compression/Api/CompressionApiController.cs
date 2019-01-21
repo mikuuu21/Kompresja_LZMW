@@ -14,7 +14,7 @@ namespace Compression.Api
         [Route("compress")]
         public IHttpActionResult GetCompress(string text)
         {
-           var textToCompress = FileReader.ConvertToAscii(text);
+           var textToCompress = FileReader.ConvertToBase64(text);
 
             string compressedFile = "";
 
@@ -53,8 +53,9 @@ namespace Compression.Api
 
             Decompression decoder = new Decompression();
             var decompressed = decoder.Decompress(compressedValue);
-
-            return Json(new { decompressed});
+            byte[] data = Convert.FromBase64String(decompressed);
+            string decodedString = System.Text.Encoding.UTF8.GetString(data);
+            return Json(new { decodedString });
         }
 
     }

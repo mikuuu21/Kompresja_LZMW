@@ -60,8 +60,8 @@ var compression = {
         var compressedValue = $decompressionTextArea.val();
         if (compressedValue !== "") {
             compressionApi.decompressText(compressedValue).then(function (response) {
-
-                $compressionTextArea.val(response.decompressed);
+                $decompressionTextArea.val('');
+                $compressionTextArea.val(response.decodedString);
 
 
             })

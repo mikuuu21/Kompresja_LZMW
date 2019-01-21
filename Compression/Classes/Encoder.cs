@@ -22,6 +22,7 @@ namespace Compression.Classes
             string matchConcatenation = null; // spoprzednie dopasowanie plus aktualne dopasowanie
             string currentMatch = null; //aktualne dopasowanie
             string previousMatch = null; //poprzednie dopasowanie
+            bool last = false;
 
 
             List<int> output = new List<int>();
@@ -46,9 +47,9 @@ namespace Compression.Classes
 
                         if (i + signsConcatenation.Length >= input.Length)
                         {
-                            for (int z = currentSign.Length - 1; z >= 0; z--)
+                            for (int z = signsConcatenation.Length - 1; z >= 0; z--)
                             {
-                                currentMatch = currentSign.Remove(z);
+                                currentMatch = signsConcatenation.Remove(z);
                                 if (dict.Any(x => string.Compare(x.Key, currentMatch, StringComparison.Ordinal) == 0))
                                 {
                                     output.Add(dict[currentMatch]);
@@ -123,11 +124,10 @@ namespace Compression.Classes
 
                 previousMatch = currentMatch;
 
-
             }
 
-
             return output;
+
 
         }
     }
