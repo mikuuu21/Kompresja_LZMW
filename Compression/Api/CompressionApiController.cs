@@ -14,13 +14,13 @@ namespace Compression.Api
         [Route("compress")]
         public IHttpActionResult GetCompress(string text)
         {
-           var textToCompress = FileReader.ConvertToBase64( text);
+           var textToCompress = FileReader.ConvertToAscii(text);
 
             string compressedFile = "";
 
             Encoder encoder = new Encoder();
 
-            List<int> compressed = encoder.Compress(text);
+            List<int> compressed = encoder.Compress(textToCompress);
 
             Dictionary<int, string> dict = DictInitialize.DeompressDictionaryInit();
 
@@ -29,9 +29,11 @@ namespace Compression.Api
                 compressedFile += item + ",";
 
             }
-            int beforeCompression = text.Count();
-            
-            return Json(new { compressedFile, beforeCompression});
+            int beforeCompression = textToCompress.Count();
+            int afterCompression = compressed.Count();
+
+
+            return Json(new { compressedFile, beforeCompression, afterCompression });
         }
 
         [Route("decompress")]
@@ -51,9 +53,8 @@ namespace Compression.Api
 
             Decompression decoder = new Decompression();
             var decompressed = decoder.Decompress(compressedValue);
-            int afterCompression = decompressed.Count();
 
-            return Json(new { decompressed, afterCompression });
+            return Json(new { decompressed});
         }
 
     }

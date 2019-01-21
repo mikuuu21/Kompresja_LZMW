@@ -26,33 +26,52 @@ var compression = {
         var $compressionTextArea = $('textarea.compress');
         var $decompressionTextArea = $('textarea.decompress');
         var textValue = $compressionTextArea.val();
+        if (textValue !=="") {
+            compressionApi.compressText(textValue).then(function (response) {
+                $compressionTextArea.val('');
+                $decompressionTextArea.val(response.compressedFile);
+                compression.before = response.beforeCompression;
+                compression.after = response.afterCompression;
 
-        compressionApi.compressText(textValue).then(function (response) {
-            $compressionTextArea.val('');
-            $decompressionTextArea.val(response.compressedFile);
-            compression.before = response.beforeCompression;
+                var compressedValuePercent = ((response.afterCompression / response.beforeCompression) * 100).toFixed(1);
+                var compressionPercent = (100 - compressedValuePercent).toFixed(1);
+                compressionPercent += "%";
+                var percent = compressedValuePercent.toString();
+                percent += "%";
 
-        })
-        .fail(function myfunction() {
+                $('div.bar1').text(response.beforeCompression);
+                $('div.bar2').text(response.afterCompression);
+                $('div.bar3').text(compressionPercent);
+                $('.bar2').append('<style>.bar2::after{ max-width:' + percent +' }</style>');
+                $('.bar3').append('<style>.bar3::after{ max-width:' + compressionPercent + ' }</style>');
+                $('.graph-cont').removeClass('hidden');
 
-         });
+
+            })
+                .fail(function myfunction() {
+
+                });
+        }
+
     },
     decompressInput: function () {
         var $compressionTextArea = $('textarea.compress');
         var $decompressionTextArea = $('textarea.decompress');
-       var compressedValue =  $decompressionTextArea.val();
+        var compressedValue = $decompressionTextArea.val();
+        if (compressedValue !== "") {
+            compressionApi.decompressText(compressedValue).then(function (response) {
 
-        compressionApi.decompressText(compressedValue).then(function (response) {
-
-            $compressionTextArea.val(response.decompressed);
-            compression.after = response.afterCompression;
+                $compressionTextArea.val(response.decompressed);
 
 
-        })
-            .fail(function myfunction() {
+            })
+                .fail(function myfunction() {
 
-            });
-    }
+                });
+        }
+
+    },
+
 };
 
 var compressionApi = {
